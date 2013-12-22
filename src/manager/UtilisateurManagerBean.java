@@ -1,6 +1,8 @@
 package manager;
 
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,9 +33,30 @@ public class UtilisateurManagerBean implements UtilisateurManager {
 	 	q.setParameter("pLogin",username);
 	 	q.setParameter("pPassword", password);
 	 
-	 	Utilisateur utilisateur = (Utilisateur) q.getSingleResult();
+	 	List<Utilisateur> utilisateur = (List <Utilisateur>) q.getResultList();
 	 	
-	 	return 0;
+	 	if(utilisateur.size() == 0){
+	 		return -1;
+	 	}
+	 	else{
+	 		return utilisateur.get(0).getId();
+	 	}
+	 	
+	}
+	
+	@Override
+	public boolean existUtilisateur(String login){
+		Query q= em.createQuery("FROM Utilisateur u WHERE u.login like :pLogin");
+		q.setParameter("pLogin",login);
+		
+		List <Object> liste = q.getResultList();
+		
+		if(liste.size() != 0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 }

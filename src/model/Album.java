@@ -19,7 +19,7 @@ public class Album implements Serializable {
 	@Id
 	private int id;
 
-	private Timestamp date;
+	private Integer date;
 
 	private String nom;
 
@@ -46,11 +46,11 @@ public class Album implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getDate() {
+	public Integer getDate() {
 		return this.date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(Integer date) {
 		this.date = date;
 	}
 

@@ -7,11 +7,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	String subscribe = request.getParameter("subscribe");
+	if(subscribe != null){
+		if(subscribe.equals("ok")){
+			out.write("Inscription ok");
+		}
+	}
+	
+	
+%>
 
+<h1>Login</h1>
 <form method="post" action="servlet/login">
-	<input type="text" name="username" />
-	<input type="text" name="password" />
+	Username<br/>
+	<input type="text" name="username" /> <br/>
+	Password <br/>
+	<input type="text" name="password" /> <br/>
 	<input type="submit" value="OK" />
 </form>
+
+<br/>
+<a href="<%=request.getContextPath()%>/subscribe.jsp">Subscribe</a>
 </body>
 </html>

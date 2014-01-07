@@ -1,7 +1,9 @@
 package servlet;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import manager.InfoManager;
 import manager.UtilisateurManager;
+import model.Chanson;
+import model.Utilisateur;
 
 
 
@@ -26,7 +30,8 @@ public class LoginServlet extends HttpServlet {
 	@EJB
 	private UtilisateurManager utilisateurManager;
 	
-	
+	@EJB
+	private InfoManager infoManager;
        
     public LoginServlet() {
         super();
@@ -34,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("TEST");
 	}
 
 
@@ -51,14 +57,17 @@ public class LoginServlet extends HttpServlet {
 		}
 		else{
 			System.out.println("Id de l'utilisateur : "+userId);
-			
-			request.setAttribute("id", userId);
-			
+						
 			HttpSession session = request.getSession(true);
 			int timeout = 1800;
 			session.setMaxInactiveInterval(timeout);
 			session.setAttribute("id", userId);
-
+			
+			// Cr�er le dossier Musique si il n'existe pas
+		    File file = new File("Musique/"+userId+"/");
+			if(!file.exists()){
+				file.mkdirs();
+			}
 			
 			response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
 			//request.getRequestDispatcher("/servlet/userAccount").forward(request, response);

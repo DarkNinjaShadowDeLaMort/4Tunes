@@ -1,11 +1,21 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import manager.UtilisateurManager;
+import model.Chanson;
+import model.Utilisateur;
 
 /**
  * Servlet implementation class UserAccountServlet
@@ -14,24 +24,37 @@ import javax.servlet.http.HttpServletResponse;
 public class UserAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	@EJB
+	private UtilisateurManager utilisateurManager;
+    
     public UserAccountServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/user-account.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+		if(session == null){
+			response.sendRedirect(request.getContextPath()+"/index.jsp");
+		}
+		else{
+			int id = (int) session.getAttribute("id");
+			
+			Utilisateur utilisateur = utilisateurManager.getUtilisateur(id);
+						
+			List <Chanson> listeChanson = utilisateur.getChansons();
+			System.out.println("listeChanson : "+listeChanson);
+						
+			request.setAttribute("listeChanson", listeChanson);
+			
+			System.out.println("dispatcher : "+request.getRequestDispatcher("/user-account.jsp"));
+			System.out.println("request : "+request);
+			System.out.println("response : "+response);
+			
+			request.getRequestDispatcher("/user-account.jsp").forward(request, response);
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

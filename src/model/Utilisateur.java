@@ -25,7 +25,7 @@ public class Utilisateur implements Serializable {
 	private String password;
 
 	//bi-directional many-to-one association to Chanson
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="utilisateur")
 	private List<Chanson> chansons;
 
 	public Utilisateur() {

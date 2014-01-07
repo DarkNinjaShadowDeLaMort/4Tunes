@@ -24,7 +24,6 @@ public class UtilisateurManagerBean implements UtilisateurManager {
 		u.setEmail(eMail);
 		
 		em.persist(u);
-		em.flush();
 	}
 
 	@Override
@@ -57,6 +56,11 @@ public class UtilisateurManagerBean implements UtilisateurManager {
 		else{
 			return false;
 		}
+	}
+
+	@Override
+	public Utilisateur getUtilisateur(int id) {
+		return em.find(Utilisateur.class, id);
 	}
 
 }

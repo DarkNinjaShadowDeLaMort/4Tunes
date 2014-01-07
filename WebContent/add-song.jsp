@@ -13,6 +13,15 @@
 	List <Album> listeAlbum = (List <Album>) request.getAttribute("listeAlbum");
 	List <Genre> listeGenre = (List <Genre>) request.getAttribute("listeGenre");
 
+	String erreur = request.getParameter("erreur");
+	if(erreur != null && ! erreur.equals("")){
+		if(erreur.equals("titre")){
+			out.write("Vous n'avez pas donné de titre");
+		}
+		else if(erreur.equals("fichier")){
+			out.write("Vous n'avez pas donné de fichier");
+		}
+	}
 %>
 
 <form method="post" action="<%=request.getContextPath()%>/servlet/addChanson" enctype="multipart/form-data">

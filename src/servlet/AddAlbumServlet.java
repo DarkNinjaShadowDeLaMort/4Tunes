@@ -155,7 +155,7 @@ public class AddAlbumServlet extends HttpServlet {
 		}
 	}
 	
-	private static String getFileName( Part part ) {
+	public static String getFileName( Part part ) {
 	    for ( String contentDisposition : part.getHeader( "content-disposition" ).split( ";" ) ) {
 	        if ( contentDisposition.trim().startsWith("filename") ) {
 	            return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 ).trim().replace( "\"", "" );

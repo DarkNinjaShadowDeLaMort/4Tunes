@@ -153,7 +153,7 @@ public class InfoManagerBean implements InfoManager {
 
 	@Override
 	public List<Chanson> getChansons(int id) {
-		Query q= em.createQuery("FROM Chanson c WHERE c.utilisateurId like :pId");	
+		Query q= em.createQuery("FROM Chanson c WHERE c.utilisateurId = :pId");	
 	 	q.setParameter("pId",id);
 	 	
 	 	List <Chanson> liste = (List <Chanson>) q.getResultList();

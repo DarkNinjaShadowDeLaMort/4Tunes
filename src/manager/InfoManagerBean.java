@@ -27,18 +27,6 @@ public class InfoManagerBean implements InfoManager {
 		return liste;
 	}
 
-	@Override
-	public void addGenre(String nom, String pere) {
-		Genre genre = new Genre();
-		genre.setNom(nom);		
-		
-		if(pere != null && ! pere.equals("")){
-			Genre genrePere = getGenreByName(pere);
-			genre.setGenre(genrePere);
-		}
-		
-		em.persist(genre);
-	}
 
 	@Override
 	public Genre getGenreByName(String nom) {
@@ -192,6 +180,4 @@ public class InfoManagerBean implements InfoManager {
 	public Chanson getChanson(int id) {
 		return em.find(Chanson.class, id);
 	}
-	
-	
 }

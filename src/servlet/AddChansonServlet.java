@@ -68,29 +68,34 @@ public class AddChansonServlet extends HttpServlet {
 		System.out.println("genre : "+genre);
 		
 		HttpSession session = request.getSession(false);
-		int id = (int) session.getAttribute("id");
-		
-		if(titre == null || titre.isEmpty()){
-			response.sendRedirect(request.getContextPath()+"/servlet/addChanson?erreur=titre");
-		}
-		else{
-			String name = AddAlbumServlet.getFileName(part);
-			if(name == null || name.isEmpty()){
-				response.sendRedirect(request.getContextPath()+"/servlet/addChanson?erreur=fichier");
+		if(session != null){
+			int id = (int) session.getAttribute("id");
+			
+			if(titre == null || titre.isEmpty()){
+				response.sendRedirect(request.getContextPath()+"/servlet/addChanson?erreur=titre");
 			}
 			else{
-				String url = AddAlbumServlet.getFileName(part);
-				
-				System.out.println("url : "+url);
-				
-				infoManager.addChanson(titre, 0.0f, url, artiste, album, genre, id);
-
-				File file = new File("Musique/"+id+"/"+url);	
-				
-				inputStreamToFile(part.getInputStream(), file);
-				
-				response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
+				String name = AddAlbumServlet.getFileName(part);
+				if(name == null || name.isEmpty()){
+					response.sendRedirect(request.getContextPath()+"/servlet/addChanson?erreur=fichier");
+				}
+				else{
+					String url = AddAlbumServlet.getFileName(part);
+					
+					System.out.println("url : "+url);
+					
+					infoManager.addChanson(titre, 0.0f, url, artiste, album, genre, id);
+	
+					File file = new File("Musique/"+id+"/"+url);	
+					
+					inputStreamToFile(part.getInputStream(), file);
+					
+					response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
+				}
 			}
+		}
+		else{
+			response.sendRedirect(request.getContextPath()+"/index.jsp");
 		}
 		
 		

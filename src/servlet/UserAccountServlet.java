@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import manager.InfoManager;
 import manager.UtilisateurManager;
 import model.Chanson;
 import model.Utilisateur;
@@ -26,6 +27,9 @@ public class UserAccountServlet extends HttpServlet {
        
 	@EJB
 	private UtilisateurManager utilisateurManager;
+	
+	@EJB
+	private InfoManager infoManager;
     
     public UserAccountServlet() {
         super();
@@ -41,7 +45,8 @@ public class UserAccountServlet extends HttpServlet {
 			int id = (int) session.getAttribute("id");
 			
 			Utilisateur utilisateur = utilisateurManager.getUtilisateur(id);
-						
+
+			//List <Chanson> listeChanson = infoManager.getChansons(id);
 			List <Chanson> listeChanson = utilisateur.getChansons();
 			System.out.println("listeChanson : "+listeChanson);
 						

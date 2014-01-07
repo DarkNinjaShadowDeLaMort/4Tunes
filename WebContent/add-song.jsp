@@ -56,7 +56,7 @@
 		<option>Aucun</option>
 		<%
 			if(listeGenre != null){
-				for(int i=0; i<listeArtiste.size(); i++){
+				for(int i=0; i<listeGenre.size(); i++){
 					out.write("<option>"+listeGenre.get(i).getNom()+"</option>\n");
 				}
 			}

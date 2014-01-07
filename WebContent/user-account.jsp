@@ -16,7 +16,6 @@
 
 <a href="<%=request.getContextPath()%>/servlet/logout">Logout</a> <br/>
 
-<a href="<%=request.getContextPath()%>/servlet/addGenre">Créer Genre</a> <br/>
 <a href="<%=request.getContextPath()%>/servlet/addArtiste">Créer Artiste</a> <br/>
 <a href="<%=request.getContextPath()%>/servlet/addAlbum">Créer Album</a> <br/>
 <a href="<%=request.getContextPath()%>/servlet/addChanson">Créer chanson</a> <br/>

@@ -12,7 +12,6 @@ import model.Genre;
 @Local
 public interface InfoManager {
 	public List <Genre> getGenres();
-	public void addGenre(String nom, String pere);
 	public Genre getGenreByName(String nom);
 	
 	public boolean artisteExist(String nom);

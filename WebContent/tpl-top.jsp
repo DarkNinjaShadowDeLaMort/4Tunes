@@ -11,8 +11,8 @@
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
     <title>4Tunes | Sign-in</title>
-    <link href="WEB-INF/css/bootstrap-min.css" rel="stylesheet">
-    <link href="WEB-INF/css/signin.css" rel="stylesheet">
+    <link href="res/css/bootstrap.min.css" rel="stylesheet">
+    <link href="res/css/signin.css" rel="stylesheet">
   </head>
 
   <body>

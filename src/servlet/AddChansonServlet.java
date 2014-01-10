@@ -87,8 +87,9 @@ public class AddChansonServlet extends HttpServlet {
 					infoManager.addChanson(titre, 0.0f, url, artiste, album, genre, id);
 	
 					File file = new File("Musique/"+id+"/"+url);	
-					
+
 					inputStreamToFile(part.getInputStream(), file);
+					
 					
 					response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
 				}
@@ -139,13 +140,13 @@ public class AddChansonServlet extends HttpServlet {
 	    }
 	}
 	
+	
 	public void inputStreamToFile(InputStream inputStream, File file){
 		OutputStream outputStream = null;
 	 
 		try {	 
 			// write the inputStream to a FileOutputStream
-			outputStream = 
-	                    new FileOutputStream(file);
+			outputStream = new FileOutputStream(file);
 	 
 			int read = 0;
 			byte[] bytes = new byte[1024];
@@ -177,5 +178,4 @@ public class AddChansonServlet extends HttpServlet {
 			}
 		}
 	}
-
 }

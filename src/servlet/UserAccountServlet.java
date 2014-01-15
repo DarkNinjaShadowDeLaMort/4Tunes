@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import manager.InfoManager;
-import manager.UtilisateurManager;
+import manager.chanson.ChansonManager;
+import manager.utilisateur.UtilisateurManager;
 import model.Chanson;
 import model.Utilisateur;
 
@@ -29,7 +29,7 @@ public class UserAccountServlet extends HttpServlet {
 	private UtilisateurManager utilisateurManager;
 	
 	@EJB
-	private InfoManager infoManager;
+	private ChansonManager chansonManager;
     
     public UserAccountServlet() {
         super();
@@ -46,7 +46,10 @@ public class UserAccountServlet extends HttpServlet {
 			
 			Utilisateur utilisateur = utilisateurManager.getUtilisateur(id);
 
-			//List <Chanson> listeChanson = infoManager.getChansons(id);
+			System.out.println("id de l'utilisateur : "+id);
+			System.out.println("utilisateur : "+utilisateur);
+			
+			//List <Chanson> listeChanson = chansonManager.getChansons(id);
 			List <Chanson> listeChanson = utilisateur.getChansons();
 			System.out.println("listeChanson : "+listeChanson);
 						

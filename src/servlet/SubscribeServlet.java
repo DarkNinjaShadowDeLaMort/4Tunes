@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 import org.hibernate.validator.internal.constraintvalidators.EmailValidator;
 
-import manager.UtilisateurManager;
-
+import manager.utilisateur.UtilisateurManager;
 /**
  * Servlet implementation class SubscribeServlet
  */

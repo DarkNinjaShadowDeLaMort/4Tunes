@@ -23,9 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import manager.InfoManager;
+import manager.album.AlbumManager;
+import manager.artiste.ArtisteManager;
 import model.Artiste;
-
 import sun.misc.IOUtils;
 
 /**
@@ -36,8 +36,11 @@ import sun.misc.IOUtils;
 public class AddAlbumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	@EJB
-	private InfoManager infoManager;
+	@EJB 
+	private ArtisteManager artisteManager;
+	
+	@EJB 
+	private AlbumManager albumManager;
 	
     public AddAlbumServlet() {
         super();
@@ -45,7 +48,7 @@ public class AddAlbumServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List <Artiste> listeArtiste = infoManager.getArtistes();
+		List <Artiste> listeArtiste = artisteManager.getArtistes();
 		request.setAttribute("listeArtiste", listeArtiste);
 		
 		request.getRequestDispatcher("/add-album.jsp").forward(request, response);
@@ -147,7 +150,7 @@ public class AddAlbumServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath()+"/servlet/addAlbum?erreur=artiste");
 			}
 			else{
-				infoManager.addAlbum(nom, pochetteArray, iDate, artiste);
+				albumManager.addAlbum(nom, pochetteArray, iDate, artiste);
 				response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
 			}
 		}

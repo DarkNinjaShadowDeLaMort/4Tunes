@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import manager.InfoManager;
-import manager.UtilisateurManager;
+import manager.utilisateur.UtilisateurManager;
 import model.Chanson;
 import model.Utilisateur;
 
@@ -29,9 +28,6 @@ public class LoginServlet extends HttpServlet {
 	
 	@EJB
 	private UtilisateurManager utilisateurManager;
-	
-	@EJB
-	private InfoManager infoManager;
        
     public LoginServlet() {
         super();

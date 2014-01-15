@@ -16,7 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 
-import manager.InfoManager;
+import manager.artiste.ArtisteManager;
+import manager.chanson.ChansonManager;
 import model.Chanson;
 
 /**
@@ -27,7 +28,7 @@ public class DownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	InfoManager infoManager;
+	private ChansonManager chansonManager;
        
     public DownloadServlet() {
         super();
@@ -44,7 +45,7 @@ public class DownloadServlet extends HttpServlet {
 			
 			int idC = Integer.valueOf(idChanson);
 			
-			Chanson chanson = infoManager.getChanson(idC);
+			Chanson chanson = chansonManager.getChanson(idC);
 			
 			response.setContentType("application/octet-stream");
 			File f = new File("Musique/"+id+"/"+chanson.getUrl());

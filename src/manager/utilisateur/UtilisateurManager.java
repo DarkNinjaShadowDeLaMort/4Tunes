@@ -1,4 +1,4 @@
-package manager;
+package manager.utilisateur;
 
 import javax.ejb.Local;
 

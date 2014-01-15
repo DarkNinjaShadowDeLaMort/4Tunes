@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import manager.InfoManager;
+import manager.artiste.ArtisteManager;
 
 /**
  * Servlet implementation class AddArtisteServlet
@@ -19,7 +19,7 @@ public class AddArtisteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	private InfoManager infoManager;
+	private ArtisteManager artisteManager;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,11 +46,11 @@ public class AddArtisteServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/servlet/addArtiste?erreur=nom");
 		}
 		else{
-			if(infoManager.artisteExist(nom)){
+			if(artisteManager.artisteExist(nom)){
 				response.sendRedirect(request.getContextPath()+"/servlet/addArtiste?erreur=nomExist");
 			}
 			else{
-				infoManager.addArtiste(nom);
+				artisteManager.addArtiste(nom);
 				response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
 			}
 		}

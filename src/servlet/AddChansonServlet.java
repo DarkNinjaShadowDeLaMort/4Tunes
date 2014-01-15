@@ -18,7 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import manager.InfoManager;
+import manager.album.AlbumManager;
+import manager.artiste.ArtisteManager;
+import manager.chanson.ChansonManager;
+import manager.genre.GenreManager;
 import model.Album;
 import model.Artiste;
 import model.Chanson;
@@ -32,8 +35,17 @@ import model.Genre;
 public class AddChansonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@EJB 
+	private ArtisteManager artisteManager;
+	
 	@EJB
-	private InfoManager infoManager;
+	private AlbumManager albumManager;
+	
+	@EJB 
+	private GenreManager genreManager;
+	
+	@EJB
+	private ChansonManager chansonManager;
 	
 	File update_log = null;
 	final String fileName = "my_updates.txt";
@@ -43,9 +55,9 @@ public class AddChansonServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List <Genre> listeGenre = infoManager.getGenres();
-		List <Artiste> listeArtiste = infoManager.getArtistes();
-		List <Album> listeAlbum = infoManager.getAlbums();
+		List <Genre> listeGenre = genreManager.getGenres();
+		List <Artiste> listeArtiste = artisteManager.getArtistes();
+		List <Album> listeAlbum = albumManager.getAlbums();
 		
 		request.setAttribute("listeGenre", listeGenre);
 		request.setAttribute("listeArtiste", listeArtiste);
@@ -84,7 +96,7 @@ public class AddChansonServlet extends HttpServlet {
 					
 					System.out.println("url : "+url);
 					
-					infoManager.addChanson(titre, 0.0f, url, artiste, album, genre, id);
+					chansonManager.addChanson(titre, 0.0f, url, artiste, album, genre, id);
 	
 					File file = new File("Musique/"+id+"/"+url);	
 

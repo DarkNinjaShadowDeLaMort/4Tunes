@@ -26,8 +26,6 @@ import javax.servlet.http.Part;
 import manager.InfoManager;
 import model.Artiste;
 
-import org.glassfish.jersey.media.multipart.MultiPart;
-
 import sun.misc.IOUtils;
 
 /**

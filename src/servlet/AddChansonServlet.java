@@ -90,7 +90,7 @@ public class AddChansonServlet extends HttpServlet {
 
 					inputStreamToFile(part.getInputStream(), file);
 					
-					
+					// Test
 					response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
 				}
 			}

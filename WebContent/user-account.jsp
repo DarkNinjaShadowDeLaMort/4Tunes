@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="model.*, java.util.List" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 5 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -26,13 +26,14 @@
 		<th>Titre</th>
 		<th>Album</th>
 		<th>Télécharger</th>
+		<th>Écouter</th>
 	</tr>
 	
 	<%
 		if(listeChanson != null){
 			for(int i=0; i<listeChanson.size(); i++){
 				Chanson c = listeChanson.get(i);
-					out.write("<tr><td>"+c.getArtiste()+"</td><td>"+c.getTitre()+"</td><td>"+c.getAlbum()+"</td><td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td></tr>\n");
+					out.write("<tr><td>"+c.getArtiste()+"</td><td>"+c.getTitre()+"</td><td>"+c.getAlbum()+"</td><td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td><td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\"></td></tr>\n");
 			}
 		}
 	%>

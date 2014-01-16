@@ -12,6 +12,26 @@
 	List <Chanson> listeChanson = (List <Chanson>) request.getAttribute("listeChanson");
 %>
 
+<%!
+public String getArtiste(Chanson c) {
+	if(c.getArtiste() != null){
+		return c.getArtiste().getNom();
+	}
+	else{
+		return "inconnu";
+	}
+}
+
+public String getAlbum(Chanson c) {
+	if(c.getAlbum() != null){
+		return c.getAlbum().getNom();
+	}
+	else{
+		return "inconnu";
+	}
+}
+%>
+
 <h1>Connecté</h1>
 
 <a href="<%=request.getContextPath()%>/servlet/logout">Logout</a> <br/>
@@ -33,9 +53,11 @@
 		if(listeChanson != null){
 			for(int i=0; i<listeChanson.size(); i++){
 				Chanson c = listeChanson.get(i);
-					out.write("<tr><td>"+c.getArtiste()+"</td><td>"+c.getTitre()+"</td><td>"+c.getAlbum()+"</td><td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td><td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\"></td></tr>\n");
+					out.write("<tr><td>"+getArtiste(c)+"</td><td>"+c.getTitre()+"</td><td>"+getAlbum(c)+"</td><td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td><td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\"></td></tr>\n");
 			}
 		}
+	
+	
 	%>
 </table>
 

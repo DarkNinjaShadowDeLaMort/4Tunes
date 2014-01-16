@@ -49,8 +49,12 @@ public class DownloadServlet extends HttpServlet {
 			
 			response.setContentType("application/octet-stream");
 			File f = new File("Musique/"+id+"/"+chanson.getUrl());
+			response.setContentLength((int) f.length());
 			
+	        response.setHeader("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"");
 			
+	        System.out.println("name : "+f.getName());
+	        
 			InputStream is = new FileInputStream(f);
 			IOUtils.copy(is,response.getOutputStream());
 			

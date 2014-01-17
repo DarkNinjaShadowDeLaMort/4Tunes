@@ -69,7 +69,7 @@ public class ConvertServlet extends HttpServlet{
 			File source = new File("Musique/"+userId+"/"+url);
 			
 			url = url.substring(0, url.lastIndexOf('.'));
-			url += "."+format;
+			url += "2."+format;
 			
 			File target = new File("Musique/"+userId+"/"+url);
 			

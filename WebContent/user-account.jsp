@@ -35,14 +35,9 @@ public String getDuration(Chanson c){
 	double duration = c.getDuree();
 	int seconds = (int) duration;
 	
-	if(duration > 60){
-		long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds)* 60);
-		long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) *60);
-		return minute+":"+second; 
-	}
-	else{
-		return duration+" sec";
-	}
+	long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds)* 60);
+	long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) *60);
+	return minute+":"+second; 
 }
 %>
 

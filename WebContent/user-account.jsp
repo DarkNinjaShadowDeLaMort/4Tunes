@@ -45,15 +45,25 @@ public String getAlbum(Chanson c) {
 		<th>Artiste</th>
 		<th>Titre</th>
 		<th>Album</th>
+		<th>Nom du fichier</th>
 		<th>Télécharger</th>
 		<th>Écouter</th>
+		<th>Convertir</th>
 	</tr>
-	
+
 	<%
 		if(listeChanson != null){
 			for(int i=0; i<listeChanson.size(); i++){
 				Chanson c = listeChanson.get(i);
-					out.write("<tr><td>"+getArtiste(c)+"</td><td>"+c.getTitre()+"</td><td>"+getAlbum(c)+"</td><td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td><td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\"></td></tr>\n");
+					out.write("\n<tr>\n"+
+					"	<td>"+getArtiste(c)+"</td>\n"+
+					"	<td>"+c.getTitre()+"</td>\n"+
+					"	<td>"+getAlbum(c)+"</td>\n"+
+					"	<td>"+c.getUrl()+"</td>\n"+
+					"	<td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td>\n"+
+					"	<td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\" preload=\"none\"></audio></td>\n"+
+					"	<td><a href=\""+request.getContextPath()+"/servlet/encode?id="+c.getId()+"\">Convertir</a></td>\n"+
+					"</tr>\n");
 			}
 		}
 	

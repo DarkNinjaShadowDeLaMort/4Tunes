@@ -1,5 +1,9 @@
 package servlet;
 
+import it.sauronsoftware.jave.AudioAttributes;
+import it.sauronsoftware.jave.Encoder;
+import it.sauronsoftware.jave.EncoderException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +41,25 @@ public class UserAccountServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/*
+		Encoder encoder = new Encoder();
+		try {
+			String[] formats = encoder.getSupportedEncodingFormats();
+			for(int i=0; i<formats.length; i++){
+				System.out.println(i+" encodingFormat : "+formats[i]);
+			}
+			
+			String t[] = encoder.getAudioEncoders();
+			for(int i=0; i<t.length; i++){
+				System.out.println(i+" audioEncoder : "+t[i]);
+			}
+		} catch (EncoderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+		
 		HttpSession session = request.getSession(false);
 		if(session == null){
 			response.sendRedirect(request.getContextPath()+"/index.jsp");
@@ -49,8 +72,8 @@ public class UserAccountServlet extends HttpServlet {
 			System.out.println("id de l'utilisateur : "+id);
 			System.out.println("utilisateur : "+utilisateur);
 			
-			//List <Chanson> listeChanson = chansonManager.getChansons(id);
-			List <Chanson> listeChanson = utilisateur.getChansons();
+			List <Chanson> listeChanson = chansonManager.getChansons(id);
+			//List <Chanson> listeChanson = utilisateur.getChansons();
 			System.out.println("listeChanson : "+listeChanson);
 						
 			request.setAttribute("listeChanson", listeChanson);

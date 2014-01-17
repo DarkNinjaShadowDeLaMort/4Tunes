@@ -22,10 +22,12 @@ public class Chanson implements Serializable {
 	private String titre;
 
 	private String url;
+	
+	private int utilisateurId;
 
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
-	@JoinColumn(name="utilisateurId")
+	@JoinColumn(name="utilisateurId", insertable=false, updatable=false)
 	private Utilisateur utilisateur;
 
 	//bi-directional many-to-one association to Artiste
@@ -108,6 +110,10 @@ public class Chanson implements Serializable {
 
 	public void setGenre(Genre genre) {
 		this.genre = genre;
+	}
+
+	public void setUtilisateurId(int id) {
+		this.utilisateurId = id;
 	}
 
 }

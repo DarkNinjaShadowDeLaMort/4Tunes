@@ -8,6 +8,8 @@ import java.io.OutputStream;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +37,7 @@ public class DownloadServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		String idChanson = request.getParameter("id");
 		System.out.println("idChanson : "+idChanson);
 		
@@ -55,9 +57,15 @@ public class DownloadServlet extends HttpServlet {
 			
 	        System.out.println("name : "+f.getName());
 	        
-			InputStream is = new FileInputStream(f);
-			IOUtils.copy(is,response.getOutputStream());
-			
+	        try{
+				InputStream is = new FileInputStream(f);
+				IOUtils.copy(is,response.getOutputStream());
+				
+				is.close();
+	        }
+	        catch(Exception e){
+	        	e.printStackTrace();
+	        }
 			/*
 			OutputStream out = response.getOutputStream();
 			 int nextChar;
@@ -78,4 +86,7 @@ public class DownloadServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 
+	public void service(ServletRequest request, ServletResponse response)throws ServletException, IOException{
+		 super.service(request,  response);
+	 }
 }

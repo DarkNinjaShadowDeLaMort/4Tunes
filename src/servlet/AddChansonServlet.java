@@ -153,7 +153,7 @@ public class AddChansonServlet extends HttpServlet {
 	}
 	
 	
-	public void inputStreamToFile(InputStream inputStream, File file){
+	public static void inputStreamToFile(InputStream inputStream, File file){
 		OutputStream outputStream = null;
 	 
 		try {	 

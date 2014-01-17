@@ -57,9 +57,7 @@ public class AddAlbumServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Part part = request.getPart("pochette");
-	    System.out.println(part);
 	    String fileName = getFileName( part );
-	    System.out.println("fileName : "+fileName);
 	    
 	    byte[] pochetteArray = null;
 	    if(fileName != null && ! fileName.isEmpty()){
@@ -75,63 +73,11 @@ public class AddAlbumServlet extends HttpServlet {
 		    pochetteArray = baos.toByteArray();
 		    baos.close();
 	    }
-	    /*
-	    if(fileName == null || fileName.isEmpty()){
-	    	
-	    }
-	    else{
-		    InputStream is = part.getInputStream();
-		    System.out.println(is);
-		    
-		    String fileName2 = fileName.substring(fileName.lastIndexOf('\\'), fileName.length());
-		     
-		    InputStream inputStream = is;
-			OutputStream outputStream = null;
-			
-		    try{
-		    	File newFile = new File("images", fileName2);
-		    	System.out.println("Test : "+newFile.getAbsolutePath());
-		    	
-		    	outputStream = new FileOutputStream(newFile);
-	 
-				int read = 0;
-				byte[] bytes = new byte[1024];
-		 
-				while ((read = inputStream.read(bytes)) != -1) {
-					outputStream.write(bytes, 0, read);
-				}
-		    }
-		    catch(Exception e){
-		    	e.printStackTrace();
-		    }
-		    finally {
-				if (inputStream != null) {
-					try {
-						inputStream.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-				if (outputStream != null) {
-					try {
-						outputStream.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-		 
-				}
-		    }
-	    }
-	    */
 	    
 		String nom = (String) request.getParameter("nom");
 		String date = request.getParameter("date");
 		String artiste = request.getParameter("artiste");
 		Integer iDate = null;
-		
-		System.out.println("nom : "+nom);
-		System.out.println("date : "+date);
-		System.out.println("artiste : "+artiste);
 		
 		if(nom == null || nom.equals("")){
 			response.sendRedirect(request.getContextPath()+"/servlet/addAlbum?erreur=nom");

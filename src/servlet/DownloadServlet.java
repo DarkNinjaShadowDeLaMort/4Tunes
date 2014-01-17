@@ -39,7 +39,6 @@ public class DownloadServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		String idChanson = request.getParameter("id");
-		System.out.println("idChanson : "+idChanson);
 		
 		if(idChanson != null){
 			HttpSession session = request.getSession(false);
@@ -54,8 +53,6 @@ public class DownloadServlet extends HttpServlet {
 			response.setContentLength((int) f.length());
 			
 	        response.setHeader("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"");
-			
-	        System.out.println("name : "+f.getName());
 	        
 	        try{
 				InputStream is = new FileInputStream(f);

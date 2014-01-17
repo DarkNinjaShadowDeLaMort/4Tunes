@@ -35,25 +35,18 @@ public class LoginServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("TEST");
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Dans le post de login servlet");
 		String username = (String) request.getParameter("username");
 		String password = (String) request.getParameter("password");
-		
-		System.out.println("username : "+username);
-		System.out.println("password ; "+password);
-		
+				
 		int userId = utilisateurManager.login(username, password);
 		if(userId == -1){
 			response.sendRedirect(request.getContextPath()+"/index.jsp?erreur=identification");
 		}
-		else{
-			System.out.println("Id de l'utilisateur : "+userId);
-						
+		else{						
 			HttpSession session = request.getSession(true);
 			int timeout = 1800;
 			session.setMaxInactiveInterval(timeout);

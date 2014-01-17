@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 
 import manager.album.AlbumManager;
 import manager.artiste.ArtisteManager;
@@ -95,12 +98,23 @@ public class AddChansonServlet extends HttpServlet {
 					String url = AddAlbumServlet.getFileName(part);
 					
 					System.out.println("url : "+url);
-					
-					chansonManager.addChanson(titre, 0.0f, url, artiste, album, genre, id);
-	
+
 					File file = new File("Musique/"+id+"/"+url);	
 
 					inputStreamToFile(part.getInputStream(), file);
+					
+					double durationInSeconds = 0;
+					try{
+						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+						AudioFormat format = audioInputStream.getFormat();
+						long frames = audioInputStream.getFrameLength();
+						durationInSeconds = (frames+0.0) / format.getFrameRate();  
+					}
+					catch(Exception e){
+						e.printStackTrace();
+					}
+					
+					chansonManager.addChanson(titre, (float)durationInSeconds, url, artiste, album, genre, id);
 					
 					// Test
 					response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
@@ -125,7 +139,6 @@ public class AddChansonServlet extends HttpServlet {
 	            update_log.createNewFile();
 	        } catch (IOException e) {
 	            e.printStackTrace();
-	            System.out.println("Error while creating file : " + fileName);
 	        }
 	    }
 	}
@@ -166,8 +179,6 @@ public class AddChansonServlet extends HttpServlet {
 			while ((read = inputStream.read(bytes)) != -1) {
 				outputStream.write(bytes, 0, read);
 			}
-	 
-			System.out.println("Done!");
 	 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="model.*, java.util.List" %>
+    pageEncoding="ISO-8859-1" import="model.*, java.util.List, java.text.DecimalFormat, java.util.concurrent.TimeUnit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 5 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,6 +30,20 @@ public String getAlbum(Chanson c) {
 		return "inconnu";
 	}
 }
+
+public String getDuration(Chanson c){
+	double duration = c.getDuree();
+	int seconds = (int) duration;
+	
+	if(duration > 60){
+		long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds)* 60);
+		long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) *60);
+		return minute+":"+second; 
+	}
+	else{
+		return duration+" sec";
+	}
+}
 %>
 
 <h1>Connecté</h1>
@@ -45,6 +59,7 @@ public String getAlbum(Chanson c) {
 		<th>Artiste</th>
 		<th>Titre</th>
 		<th>Album</th>
+		<th>Durée</th>
 		<th>Nom du fichier</th>
 		<th>Télécharger</th>
 		<th>Écouter</th>
@@ -59,6 +74,7 @@ public String getAlbum(Chanson c) {
 					"	<td>"+getArtiste(c)+"</td>\n"+
 					"	<td>"+c.getTitre()+"</td>\n"+
 					"	<td>"+getAlbum(c)+"</td>\n"+
+					"	<td>"+getDuration(c)+"</td>\n"+
 					"	<td>"+c.getUrl()+"</td>\n"+
 					"	<td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td>\n"+
 					"	<td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\" preload=\"none\"></audio></td>\n"+

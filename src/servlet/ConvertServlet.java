@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 
 import manager.chanson.ChansonManager;
 import model.Chanson;
@@ -32,7 +35,6 @@ public class ConvertServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sId = request.getParameter("id");
-		System.out.println("sId : "+sId);
 		
 		HttpSession session = request.getSession(false);
 		if(session == null || sId == null){
@@ -53,16 +55,11 @@ public class ConvertServlet extends HttpServlet{
 		}
 		else{
 			int userId = (int) session.getAttribute("id");
-			System.out.println("request : "+request);
 			
 			int chansonId = Integer.valueOf(request.getParameter("id"));
-			System.out.println("id : "+chansonId);
 			
 			Chanson chanson = chansonManager.getChanson(chansonId);
 			
-			//request.getRequestDispatcher("/encode.jsp").forward(request, response);
-			
-			//Part part = request.getPart("fichier");
 			String bitrate = request.getParameter("bitrate");
 			String samplingRate = request.getParameter("samplingRate");
 			String channel = request.getParameter("channel");
@@ -89,9 +86,19 @@ public class ConvertServlet extends HttpServlet{
 			bitrate = bitrate.substring(0, bitrate.indexOf(' '));
 			bitr = Integer.valueOf(bitrate);
 			
-			
 			encode(source, target, bitr*1000, 44100, chan, format);
-			chansonManager.addChanson(chanson.getTitre(), 0, url, chanson.getArtiste(), chanson.getAlbum(), chanson.getGenre(), userId);
+			
+			double durationInSeconds = 0;
+			try{
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(target);
+				AudioFormat audioFormat = audioInputStream.getFormat();
+				long frames = audioInputStream.getFrameLength();
+				durationInSeconds = (frames+0.0) / audioFormat.getFrameRate();  
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+			chansonManager.addChanson(chanson.getTitre(), (float)durationInSeconds, url, chanson.getArtiste(), chanson.getAlbum(), chanson.getGenre(), userId);
 			
 			response.sendRedirect(request.getContextPath()+"/servlet/userAccount");
 		}

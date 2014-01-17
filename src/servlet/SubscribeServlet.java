@@ -35,15 +35,10 @@ public class SubscribeServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Dans le post de subscribe servlet");
 		String username = (String) request.getParameter("username");
 		String password = (String) request.getParameter("password");
 		String eMail = (String) request.getParameter("eMail");
-		
-		System.out.println("username : "+username);
-		System.out.println("password : "+password);
-		System.out.println("eMail : "+eMail);
-		
+				
 		if(username == null || username.equals("")){
 			response.sendRedirect(request.getContextPath()+"/subscribe.jsp?erreur=username");
 		}

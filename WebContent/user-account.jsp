@@ -42,8 +42,8 @@ public String getDuration(Chanson c){
 <a href="<%=request.getContextPath()%>/servlet/addAlbum">Créer Album</a> <br/>
 <a href="<%=request.getContextPath()%>/servlet/addChanson">Créer chanson</a> <br/>
 
-<table width="70%" border="1" cellpadding="0" cellspacing="0">
-	<tr>
+<table class="table table-striped">
+	<thead>
 		<th>Artiste</th>
 		<th>Titre</th>
 		<th>Album</th>
@@ -52,7 +52,7 @@ public String getDuration(Chanson c){
 		<th>Télécharger</th>
 		<th>Écouter</th>
 		<th>Convertir</th>
-	</tr>
+	</thead>
 
 	<%
 		if(listeChanson != null){
@@ -64,9 +64,9 @@ public String getDuration(Chanson c){
 					"	<td>"+getAlbum(c)+"</td>\n"+
 					"	<td>"+getDuration(c)+"</td>\n"+
 					"	<td>"+c.getUrl()+"</td>\n"+
-					"	<td><a href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\">Télécharger</a></td>\n"+
+					"	<td><a title=\"Download\" href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-cloud-download\"></span></a></td>\n"+
 					"	<td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\" preload=\"none\"></audio></td>\n"+
-					"	<td><a href=\""+request.getContextPath()+"/servlet/encode?id="+c.getId()+"\">Convertir</a></td>\n"+
+					"	<td><a title=\"Convert\" href=\""+request.getContextPath()+"/servlet/encode?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-sound-stereo\"></span></a></td>\n"+
 					"</tr>\n");
 			}
 		}

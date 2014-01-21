@@ -11,7 +11,7 @@ public String getArtiste(Chanson c) {
 		return c.getArtiste().getNom();
 	}
 	else{
-		return "inconnu";
+		return "unknown";
 	}
 }
 
@@ -20,7 +20,7 @@ public String getAlbum(Chanson c) {
 		return c.getAlbum().getNom();
 	}
 	else{
-		return "inconnu";
+		return "unknown";
 	}
 }
 
@@ -38,20 +38,20 @@ public String getDuration(Chanson c){
 
 <a href="<%=request.getContextPath()%>/servlet/logout">Logout</a> <br/>
 
-<a href="<%=request.getContextPath()%>/servlet/addArtiste">Créer Artiste</a> <br/>
-<a href="<%=request.getContextPath()%>/servlet/addAlbum">Créer Album</a> <br/>
-<a href="<%=request.getContextPath()%>/servlet/addChanson">Créer chanson</a> <br/>
+<a href="<%=request.getContextPath()%>/servlet/addArtiste">Add new Singer</a> <br/>
+<a href="<%=request.getContextPath()%>/servlet/addAlbum">Add new Album</a> <br/>
+<a href="<%=request.getContextPath()%>/servlet/addChanson">Add new Song</a> <br/>
 
 <table class="table table-striped">
 	<thead>
-		<th>Artiste</th>
-		<th>Titre</th>
+		<th>Artist</th>
+		<th>Title</th>
 		<th>Album</th>
-		<th>Durée</th>
-		<th>Nom du fichier</th>
-		<th>Télécharger</th>
-		<th>Écouter</th>
-		<th>Convertir</th>
+		<th>Duration</th>
+		<th>File name</th>
+		<th>Download</th>
+		<th>Listen</th>
+		<th>Convert</th>
 	</thead>
 
 	<%

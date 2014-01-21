@@ -16,7 +16,50 @@
 		}
 	}
 %>
+<form class="form-signin" role="form" method="post" action="<%=request.getContextPath()%>/servlet/addChanson" enctype="multipart/form-data">
+  <h2 class="form-signin-heading">Add Song</h2>
+  <input type="text" name="titre" class="form-control" placeholder="Title" required autofocus>
+  <input type="file" name="fichier" class="form-control">
+  <select name="artiste" class="form-control">
+  	<option>Aucun</option>
+		<%
+			if(listeArtiste != null){
+				for(int i=0; i<listeArtiste.size(); i++){
+					out.write("<option>"+listeArtiste.get(i).getNom()+"</option>\n");
+				}
+			}
+		%>
+  
+  </select>
+  <select name="album" class="form-control">
+		<option>Aucun</option>
+		<%
+			if(listeAlbum != null){
+				for(int i=0; i<listeAlbum.size(); i++){
+					out.write("<option>"+listeAlbum.get(i).getNom()+"</option>\n");
+				}
+			}
+		%>
+	</select>
+  <select name="genre" class="form-control">
+  	<option>Aucun</option>
+		<%
+			if(listeGenre != null){
+				for(int i=0; i<listeGenre.size(); i++){
+					out.write("<option>"+listeGenre.get(i).getNom()+"</option>\n");
+				}
+			}
+		%>
+  </select>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Add Song</button>
+</form>
 
+
+
+
+
+
+<!--
 <form method="post" action="<%=request.getContextPath()%>/servlet/addChanson" enctype="multipart/form-data">
 	Titre <br/>
 	<input type="text" name="titre" /> <br/>
@@ -56,5 +99,10 @@
 		%>
 	</select><br/>
 	<input type="submit" value="Ok" />
-</form>
+</form>-->
+
+
+
+
+
 <jsp:include page="tpl-bottom.jsp"></jsp:include>

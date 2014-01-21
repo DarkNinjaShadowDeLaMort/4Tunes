@@ -11,7 +11,25 @@
 	}
 %>
 
-<form method="post" action="<%=request.getContextPath()%>/servlet/addGenre">
+<form class="form-signin" role="form" method="post" action="<%=request.getContextPath()%>/servlet/addGenre">
+  <h2 class="form-signin-heading">Add Genre</h2>
+  <input type="text" name="genre" class="form-control" placeholder="Name" required autofocus>
+  <select name="pere" class="form-control">
+  	<option>Aucun</option>
+		<%
+			if(listeArtiste != null){
+				for(int i=0; i<listeArtiste.size(); i++){
+					out.write("<option>"+listeArtiste.get(i).getNom()+"</option>\n");
+				}
+			}
+		%>
+  
+  </select>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Add Genre</button>
+</form>
+
+
+<!-- <form method="post" action="<%=request.getContextPath()%>/servlet/addGenre">
 	<input type="text" name="genre" /> <br/>
 	<select name="pere">
 		<option>Aucun</option>
@@ -24,5 +42,8 @@
 		%>
 	</select> 
 	<input type="submit" value="OK" />
-</form>
+</form> -->
+
+
+
 <jsp:include page="tpl-bottom.jsp"></jsp:include>

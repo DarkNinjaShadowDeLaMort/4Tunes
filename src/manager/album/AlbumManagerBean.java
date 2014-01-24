@@ -59,4 +59,19 @@ public class AlbumManagerBean implements AlbumManager {
 	 	}
 	}
 
+	@Override
+	public Album getAlbumById(int id) {
+		Query q= em.createQuery("FROM Album a WHERE a.id = :id");	
+	 	q.setParameter("id",id);
+	 	
+	 	List <Album> liste = (List <Album>) q.getResultList();
+	 	
+	 	if(liste.size() == 0){
+	 		return null;
+	 	}
+	 	else{
+	 		return liste.get(0);
+	 	}
+	}
+
 }

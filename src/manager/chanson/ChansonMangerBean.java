@@ -31,13 +31,13 @@ public class ChansonMangerBean implements ChansonManager {
 	private GenreManager genreManager;
 	
 	@Override
-	public void addChanson(String titre, float duree, String url, String artiste, String album, String genre, int id) {
+	public void addChanson(String titre, float duree, String url, int artiste, String album, String genre, int id) {
 		Chanson chanson = new Chanson();
 		chanson.setTitre(titre);
 		chanson.setDuree(duree);
 		chanson.setUrl(url);
 		
-		Artiste a = artisteManager.getArtisteByName(artiste);
+		Artiste a = artisteManager.getArtisteById(artiste);
 		chanson.setArtiste(a);
 		
 		Album al = albumManager.getAlbumByName(album);

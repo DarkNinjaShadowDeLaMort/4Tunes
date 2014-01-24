@@ -38,4 +38,20 @@ public class GenreManagerBean implements GenreManager{
 	 	}
 	}
 
+
+	@Override
+	public Genre getGenreById(int id) {
+		Query q= em.createQuery("FROM Genre g WHERE g.id = :id ORDER BY g.nom ASC");	
+	 	q.setParameter("id",id);
+	 	
+	 	List <Genre> liste = (List <Genre>) q.getResultList();
+	 	
+	 	if(liste.size() == 0){
+	 		return null;
+	 	}
+	 	else{
+	 		return liste.get(0);
+	 	}
+	}
+
 }

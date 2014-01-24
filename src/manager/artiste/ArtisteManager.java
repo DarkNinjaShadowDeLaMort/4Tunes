@@ -12,4 +12,5 @@ public interface ArtisteManager {
 	public void addArtiste(String nom);
 	public List <Artiste> getArtistes();
 	public Artiste getArtisteByName(String nom);
+	public Artiste getArtisteById(int id);
 }

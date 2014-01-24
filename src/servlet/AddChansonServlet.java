@@ -72,13 +72,13 @@ public class AddChansonServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Part part = request.getPart("fichier");
 		String titre = request.getParameter("titre");
-		String artiste = request.getParameter("artiste");
+		int idArtiste = Integer.parseInt(request.getParameter("artiste"));
 		String album = request.getParameter("album");
 		String genre = request.getParameter("genre");
 		
 		System.out.println("fichier : "+part);
 		System.out.println("titre : "+titre);
-		System.out.println("artiste : "+artiste);
+		System.out.println("idArtiste : "+idArtiste);
 		System.out.println("album : "+album);
 		System.out.println("genre : "+genre);
 		
@@ -114,7 +114,7 @@ public class AddChansonServlet extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-					chansonManager.addChanson(titre, (float)durationInSeconds, url, artiste, album, genre, id);
+					chansonManager.addChanson(titre, (float)durationInSeconds, url, idArtiste, album, genre, id);
 					
 					// Test
 					response.sendRedirect(request.getContextPath()+"/servlet/userAccount");

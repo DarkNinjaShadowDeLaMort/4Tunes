@@ -63,4 +63,19 @@ public class ArtisteManagerBean implements ArtisteManager {
 	 	}
 	}
 
+	@Override
+	public Artiste getArtisteById(int id) {
+		Query q= em.createQuery("FROM Artiste a WHERE a.id = :id");	
+	 	q.setParameter("id",id);
+	 	
+	 	List <Artiste> liste = (List <Artiste>) q.getResultList();
+	 	
+	 	if(liste.size() == 0){
+	 		return null;
+	 	}
+	 	else{
+	 		return liste.get(0);
+	 	}
+	}
+
 }

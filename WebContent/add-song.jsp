@@ -25,7 +25,7 @@
 		<%
 			if(listeArtiste != null){
 				for(int i=0; i<listeArtiste.size(); i++){
-					out.write("<option>"+listeArtiste.get(i).getNom()+"</option>\n");
+					out.write("<option value=\""+listeArtiste.get(i).getId()+"\">"+listeArtiste.get(i).getNom()+"</option>\n");
 				}
 			}
 		%>

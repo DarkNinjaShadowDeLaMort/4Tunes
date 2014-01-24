@@ -11,4 +11,5 @@ public interface AlbumManager {
 	public void addAlbum(String nom, byte[] pochette, Integer date, String artiste);
 	public List <Album> getAlbums();
 	public Album getAlbumByName(String nom);
+	public Album getAlbumById(int id);
 }

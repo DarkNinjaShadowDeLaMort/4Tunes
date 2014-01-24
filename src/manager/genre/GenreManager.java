@@ -10,4 +10,5 @@ import model.Genre;
 public interface GenreManager {
 	public List <Genre> getGenres();
 	public Genre getGenreByName(String nom);
+	public Genre getGenreById(int id);
 }

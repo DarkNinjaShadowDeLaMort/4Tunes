@@ -36,7 +36,7 @@
 		<%
 			if(listeAlbum != null){
 				for(int i=0; i<listeAlbum.size(); i++){
-					out.write("<option>"+listeAlbum.get(i).getNom()+"</option>\n");
+					out.write("<option value=\""+listeAlbum.get(i).getId()+"\">"+listeAlbum.get(i).getNom()+"</option>\n");
 				}
 			}
 		%>
@@ -46,7 +46,7 @@
 		<%
 			if(listeGenre != null){
 				for(int i=0; i<listeGenre.size(); i++){
-					out.write("<option>"+listeGenre.get(i).getNom()+"</option>\n");
+					out.write("<option value=\""+listeGenre.get(i).getId()+"\">"+listeGenre.get(i).getNom()+"</option>\n");
 				}
 			}
 		%>

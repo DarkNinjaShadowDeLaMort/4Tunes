@@ -31,7 +31,7 @@ public class ChansonMangerBean implements ChansonManager {
 	private GenreManager genreManager;
 	
 	@Override
-	public void addChanson(String titre, float duree, String url, int artiste, String album, String genre, int id) {
+	public void addChanson(String titre, float duree, String url, int artiste, int album, int genre, int id) {
 		Chanson chanson = new Chanson();
 		chanson.setTitre(titre);
 		chanson.setDuree(duree);
@@ -40,10 +40,10 @@ public class ChansonMangerBean implements ChansonManager {
 		Artiste a = artisteManager.getArtisteById(artiste);
 		chanson.setArtiste(a);
 		
-		Album al = albumManager.getAlbumByName(album);
+		Album al = albumManager.getAlbumById(album);
 		chanson.setAlbum(al);
 		
-		Genre g = genreManager.getGenreByName(genre);
+		Genre g = genreManager.getGenreById(genre);
 		chanson.setGenre(g);
 		
 		chanson.setUtilisateurId(id);

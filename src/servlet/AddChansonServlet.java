@@ -73,14 +73,14 @@ public class AddChansonServlet extends HttpServlet {
 		Part part = request.getPart("fichier");
 		String titre = request.getParameter("titre");
 		int idArtiste = Integer.parseInt(request.getParameter("artiste"));
-		String album = request.getParameter("album");
-		String genre = request.getParameter("genre");
+		int idAlbum = Integer.parseInt(request.getParameter("album"));
+		int idGenre = Integer.parseInt(request.getParameter("genre"));
 		
 		System.out.println("fichier : "+part);
 		System.out.println("titre : "+titre);
 		System.out.println("idArtiste : "+idArtiste);
-		System.out.println("album : "+album);
-		System.out.println("genre : "+genre);
+		System.out.println("idAlbum : "+idAlbum);
+		System.out.println("idGenre : "+idGenre);
 		
 		HttpSession session = request.getSession(false);
 		if(session != null){
@@ -114,7 +114,7 @@ public class AddChansonServlet extends HttpServlet {
 						e.printStackTrace();
 					}
 					
-					chansonManager.addChanson(titre, (float)durationInSeconds, url, idArtiste, album, genre, id);
+					chansonManager.addChanson(titre, (float)durationInSeconds, url, idArtiste, idAlbum, idGenre, id);
 					
 					// Test
 					response.sendRedirect(request.getContextPath()+"/servlet/userAccount");

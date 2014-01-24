@@ -36,11 +36,11 @@ public String getDuration(Chanson c){
 
 <h1>Connecté</h1>
 
-<a href="<%=request.getContextPath()%>/servlet/logout">Logout</a> <br/>
+<a class="btn btn-danger" href="<%=request.getContextPath()%>/servlet/logout"><span class="glyphicon glyphicon-off"></span> Logout</a> <br/>
 
-<a href="<%=request.getContextPath()%>/servlet/addArtiste">Add new Singer</a> <br/>
-<a href="<%=request.getContextPath()%>/servlet/addAlbum">Add new Album</a> <br/>
-<a href="<%=request.getContextPath()%>/servlet/addChanson">Add new Song</a> <br/>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addArtiste"><span class="glyphicon glyphicon-plus"></span> Add new Singer</a> <br/>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addAlbum"><span class="glyphicon glyphicon-plus"></span> Add new Album</a> <br/>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addChanson"><span class="glyphicon glyphicon-plus"></span> Add new Song</a> <br/>
 
 <table class="table table-striped">
 	<thead>

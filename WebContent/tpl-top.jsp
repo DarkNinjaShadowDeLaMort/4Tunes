@@ -11,8 +11,8 @@
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
     <title>4Tunes, vivez votre son !</title>
-    <link href="http://localhost:8080/4Tunes/res/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://localhost:8080/4Tunes/res/css/signin.css" rel="stylesheet">
+    <link href="res/css/bootstrap.min.css" rel="stylesheet">
+    <link href="res/css/signin.css" rel="stylesheet">
   </head>
 
   <body>

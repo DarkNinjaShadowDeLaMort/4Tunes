@@ -12,7 +12,7 @@
 	}
 %>
 
-	<form class="form-signin" role="form" method="post" action="servlet/addArtiste">
+	<form class="form-signin" role="form" method="post" action="addArtiste">
 		  <h2 class="form-signin-heading">Add Artist</h2>
 		  <input type="text" name="nom" class="form-control" placeholder="Name" required autofocus>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Add Artist</button>

@@ -18,11 +18,11 @@
 	}
 %>
 
-<form class="form-signin" role="form" method="post" action="<%=request.getContextPath()%>/servlet/addAlbum" enctype="multipart/form-data">
+<form class="form-signin" role="form" method="post" action="addAlbum" enctype="multipart/form-data">
   <h2 class="form-signin-heading">Add Album</h2>
   <input type="text" name="nom" class="form-control" placeholder="Name" required autofocus>
   <input type="file" name="pochette" class="form-control" placeholder="Pochette">
-  <input type="date" name="date" class="form-control" placeholder="Date">
+  <input type="number" name="date" class="form-control" placeholder="Date">
   <select name="artiste" class="form-control">
   	<option>Aucun</option>
 		<%
@@ -41,7 +41,15 @@
 <!--<form method="post" action="<%=request.getContextPath()%>/servlet/addAlbum" enctype="multipart/form-data">
 	Nom : <br/>
 	<input type="text" name="nom" /> <br/>
-	Pochette : <br/>
+	Pochette : <br/>te)){
+					response.sendRedirect(request.getContextPath()+"/servlet/addAlbum?erreur=date");
+					return;
+				}
+				else{
+					iDate = Integer.valueOf(date);
+				}
+			}
+			if(artiste == null || artiste
 	<input type="file" name="pochette" /> <br/>
 	Date : <br/>
 	<input type="text" name="date" /> <br/>

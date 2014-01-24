@@ -15,7 +15,7 @@ public class GenreManagerBean implements GenreManager{
 	
 	@Override
 	public List<Genre> getGenres() {
-		Query q= em.createQuery("FROM Genre g");
+		Query q= em.createQuery("FROM Genre g ORDER BY g.nom ASC");
 		
 		List <Genre> liste = q.getResultList();
 		
@@ -25,7 +25,7 @@ public class GenreManagerBean implements GenreManager{
 
 	@Override
 	public Genre getGenreByName(String nom) {
-		Query q= em.createQuery("FROM Genre g WHERE g.nom like :pGenre");	
+		Query q= em.createQuery("FROM Genre g WHERE g.nom like :pGenre ORDER BY g.nom ASC");	
 	 	q.setParameter("pGenre",nom);
 	 	
 	 	List <Genre> liste = (List <Genre>) q.getResultList();

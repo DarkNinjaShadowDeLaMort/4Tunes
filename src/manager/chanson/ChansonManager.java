@@ -17,4 +17,5 @@ public interface ChansonManager {
 	public List <Chanson> getChansons(int id);
 	public Chanson getChansonByUrl(String url);
 	public Chanson getChanson(int id);
+	public void deleteChanson(int id);
 }

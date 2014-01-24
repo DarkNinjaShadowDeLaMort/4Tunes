@@ -51,6 +51,7 @@ public String getDuration(Chanson c){
 		<th>Download</th>
 		<th>Listen</th>
 		<th>Convert</th>
+		<th>Delete</th>
 	</thead>
 
 	<%
@@ -66,6 +67,7 @@ public String getDuration(Chanson c){
 					"	<td><a title=\"Download\" href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-cloud-download\"></span></a></td>\n"+
 					"	<td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\" preload=\"none\"></audio></td>\n"+
 					"	<td><a title=\"Convert\" href=\""+request.getContextPath()+"/servlet/encode?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-sound-stereo\"></span></a></td>\n"+
+					"	<td><a title=\"Delete\" href=\""+request.getContextPath()+"/servlet/delete?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-remove\"></span></a></td>\n"+
 					"</tr>\n");
 			}
 		}

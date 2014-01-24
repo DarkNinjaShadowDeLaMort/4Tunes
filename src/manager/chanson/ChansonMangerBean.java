@@ -101,4 +101,10 @@ public class ChansonMangerBean implements ChansonManager {
 	 	}
 	}
 
+	public void deleteChanson(int id) {
+
+		Query q= em.createQuery("DELETE FROM Chanson c WHERE c.id = :id");	
+	 	q.setParameter("id",id);
+	 	q.executeUpdate();
+	}
 }

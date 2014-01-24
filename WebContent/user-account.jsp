@@ -36,11 +36,11 @@ public String getDuration(Chanson c){
 
 <h1>Connecté</h1>
 
-<a href="<%=request.getContextPath()%>/servlet/logout">Logout</a> <br/>
+<a class="btn btn-danger" href="<%=request.getContextPath()%>/servlet/logout"><span class="glyphicon glyphicon-off"></span> Logout</a> <br/>
 
-<a href="<%=request.getContextPath()%>/servlet/addArtiste">Add new Singer</a> <br/>
-<a href="<%=request.getContextPath()%>/servlet/addAlbum">Add new Album</a> <br/>
-<a href="<%=request.getContextPath()%>/servlet/addChanson">Add new Song</a> <br/>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addArtiste"><span class="glyphicon glyphicon-plus"></span> Add new Singer</a> <br/>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addAlbum"><span class="glyphicon glyphicon-plus"></span> Add new Album</a> <br/>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addChanson"><span class="glyphicon glyphicon-plus"></span> Add new Song</a> <br/>
 
 <table class="table table-striped">
 	<thead>
@@ -52,6 +52,7 @@ public String getDuration(Chanson c){
 		<th>Download</th>
 		<th>Listen</th>
 		<th>Convert</th>
+		<th>Delete</th>
 	</thead>
 
 	<%
@@ -67,6 +68,7 @@ public String getDuration(Chanson c){
 					"	<td><a title=\"Download\" href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-cloud-download\"></span></a></td>\n"+
 					"	<td><audio src=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"  controls=\"controls\" preload=\"none\"></audio></td>\n"+
 					"	<td><a title=\"Convert\" href=\""+request.getContextPath()+"/servlet/encode?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-sound-stereo\"></span></a></td>\n"+
+					"	<td><a title=\"Delete\" href=\""+request.getContextPath()+"/servlet/delete?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-remove\"></span></a></td>\n"+
 					"</tr>\n");
 			}
 		}

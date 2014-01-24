@@ -9,9 +9,9 @@
 		<class>model.Utilisateur</class>
 		<class>model.Genre</class>
 	    <properties>
-        	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysql.deptinfo-st.univ-fcomte.fr:3306/pad"/>
-       	 	<property name="javax.persistence.jdbc.user" value="pad"/>
-			<property name="javax.persistence.jdbc.password" value="pad"/>
+        	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysql.deptinfo-st.univ-fcomte.fr:3306/4tunes"/>
+       	 	<property name="javax.persistence.jdbc.user" value="4tunes"/>
+			<property name="javax.persistence.jdbc.password" value="4tunes"/>
         	<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
         	<property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
         </properties>

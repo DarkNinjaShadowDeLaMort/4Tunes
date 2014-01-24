@@ -17,6 +17,7 @@
   <select name="pere" class="form-control">
   	<option>Aucun</option>
 		<%
+			List <Artiste> listeArtiste = (List <Artiste>) request.getAttribute("listeArtiste");
 			if(listeArtiste != null){
 				for(int i=0; i<listeArtiste.size(); i++){
 					out.write("<option>"+listeArtiste.get(i).getNom()+"</option>\n");

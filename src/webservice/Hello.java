@@ -1,5 +1,6 @@
 package webservice;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -72,7 +73,7 @@ public class Hello {
 	      session.setAttribute("login", login);
 	      session.setAttribute("idBDD", connexion);
 	      
-	      
+	      ArrayList <String> listeKeys = new ArrayList <String> ();
 	      
 	      for(Entry<String, HttpSession> entry : listeSessions.entrySet()) {
 	    	    String key = entry.getKey();
@@ -82,10 +83,14 @@ public class Hello {
 	    	    	value.getCreationTime();
 	    	    }
 	    	    catch(Exception e){
-	    	    	listeSessions.remove(key);
-	    	    	System.out.println("j'enleve : "+key);
+	    	    	listeKeys.add(key);
 	    	    }
 	    	}
+	      
+	      for(String key : listeKeys){
+	    	  listeSessions.remove(key);
+	    	  System.out.println("Suppression de : "+key);
+	      }
 	    	
 	      
 	      

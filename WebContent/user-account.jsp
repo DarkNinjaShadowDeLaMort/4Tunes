@@ -8,6 +8,7 @@
 
 	int idArtSel = ((Integer) request.getAttribute("selectedArtiste")).intValue();
 	int idAlbSel = ((Integer) request.getAttribute("selectedAlbum")).intValue();
+	
 %>
 
 <%!
@@ -20,9 +21,10 @@ public String getArtiste(Chanson c) {
 	}
 }
 
-public String getAlbum(Chanson c) {
+public String getAlbum(Chanson c, String contextPath) {
+
 	if(c.getAlbum() != null){
-		return c.getAlbum().getNom();
+		return "<a href="+contextPath+"/servlet/image?id="+c.getAlbum().getId()+">"+c.getAlbum().getNom()+"</a>";
 	}
 	else{
 		return "unknown";
@@ -84,7 +86,7 @@ public String getDuration(Chanson c){
 					out.write("\n<tr>\n"+
 					"	<td>"+getArtiste(c)+"</td>\n"+
 					"	<td>"+c.getTitre()+"</td>\n"+
-					"	<td>"+getAlbum(c)+"</td>\n"+
+					"	<td>"+getAlbum(c, request.getContextPath())+"</td>\n"+
 					"	<td>"+getDuration(c)+"</td>\n"+
 					"	<td>"+c.getUrl()+"</td>\n"+
 					"	<td><a title=\"Download\" href=\""+request.getContextPath()+"/servlet/download?id="+c.getId()+"\"><span class=\"glyphicon glyphicon-cloud-download\"></span></a></td>\n"+

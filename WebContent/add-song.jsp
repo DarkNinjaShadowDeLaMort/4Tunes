@@ -14,6 +14,15 @@
 		else if(erreur.equals("fichier")){
 			out.write("Vous n'avez pas donné de fichier");
 		}
+		else if(erreur.equals("artiste")){
+			out.write("Vous n'avez pas donné d'Artiste");
+		}
+		else if(erreur.equals("album")){
+			out.write("Vous n'avez pas donné de fichier");
+		}
+		else if(erreur.equals("genre")){
+			out.write("Vous n'avez pas donné de fichier");
+		}
 	}
 %>
 
@@ -26,7 +35,7 @@
   <input type="text" name="titre" class="form-control" placeholder="Title" required autofocus>
   <input type="file" name="fichier" class="form-control">
   <select name="artiste" class="form-control">
-  	<option>Aucun</option>
+  	<option value="Aucun">Artiste</option>
 		<%
 			if(listeArtiste != null){
 				for(int i=0; i<listeArtiste.size(); i++){
@@ -37,7 +46,7 @@
   
   </select>
   <select name="album" class="form-control">
-		<option>Aucun</option>
+		<option value="Aucun">Album</option>
 		<%
 			if(listeAlbum != null){
 				for(int i=0; i<listeAlbum.size(); i++){
@@ -47,7 +56,7 @@
 		%>
 	</select>
   <select name="genre" class="form-control">
-  	<option>Aucun</option>
+  	<option value="Aucun">Genre</option>
 		<%
 			if(listeGenre != null){
 				for(int i=0; i<listeGenre.size(); i++){

@@ -70,6 +70,19 @@ public class AddChansonServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("artiste").equals("Aucun")){
+			response.sendRedirect(request.getContextPath()+"/servlet/addChanson?erreur=artiste");
+			return;
+		}
+		else if(request.getParameter("album").equals("Aucun")){
+			response.sendRedirect(request.getContextPath()+"/servlet/addChanson?erreur=album");
+			return;
+		}
+		else if(request.getParameter("genre").equals("Aucun")){
+			response.sendRedirect(request.getContextPath()+"/servlet/addChanson?erreur=genre");
+			return;
+		}
+		
 		Part part = request.getPart("fichier");
 		String titre = request.getParameter("titre");
 		int idArtiste = Integer.parseInt(request.getParameter("artiste"));

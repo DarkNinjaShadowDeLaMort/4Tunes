@@ -62,10 +62,7 @@ public class AddAlbumServlet extends HttpServlet {
 	    byte[] pochetteArray = null;
 	    if(fileName != null && ! fileName.isEmpty()){
 		    InputStream is = part.getInputStream();
-		    /*
-		    String strIs = is.toString();
-		    pochetteArray = strIs.getBytes();
-		    */
+
 		    BufferedImage originalImage = ImageIO.read(is);
 		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		    ImageIO.write( originalImage, "jpg", baos );

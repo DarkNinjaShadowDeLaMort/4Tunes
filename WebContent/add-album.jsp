@@ -28,7 +28,7 @@
   <input type="file" name="pochette" class="form-control" placeholder="Pochette">
   <input type="number" name="date" class="form-control" placeholder="Date">
   <select name="artiste" class="form-control">
-  	<option>Aucun</option>
+  	<option value="Aucun">Artiste</option>
 		<%
 			if(listeArtiste != null){
 				for(int i=0; i<listeArtiste.size(); i++){

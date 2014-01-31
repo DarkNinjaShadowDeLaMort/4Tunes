@@ -60,9 +60,9 @@ public class ConvertServlet extends HttpServlet{
 			
 			Chanson chanson = chansonManager.getChanson(chansonId);
 			
-			String bitrate = request.getParameter("bitrate");
+			int bitrate = Integer.parseInt(request.getParameter("bitrate"));
 			String samplingRate = request.getParameter("samplingRate");
-			String channel = request.getParameter("channel");
+			int channel = Integer.parseInt(request.getParameter("channel"));
 			String format = request.getParameter("format");
 						
 			String url = chanson.getUrl();
@@ -73,20 +73,7 @@ public class ConvertServlet extends HttpServlet{
 			
 			File target = new File("Musique/"+userId+"/"+url);
 			
-			
-			Integer chan;
-			if(channel.charAt(0) == '1'){
-				chan = 1;
-			}
-			else{
-				chan = 2;
-			}
-			
-			Integer bitr = 0;
-			bitrate = bitrate.substring(0, bitrate.indexOf(' '));
-			bitr = Integer.valueOf(bitrate);
-			
-			encode(source, target, bitr*1000, 44100, chan, format);
+			encode(source, target, bitrate*1000, 44100, channel, format);
 			
 			double durationInSeconds = 0;
 			try{

@@ -1,6 +1,8 @@
 package manager.artiste;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -78,4 +80,18 @@ public class ArtisteManagerBean implements ArtisteManager {
 	 	}
 	}
 
+	@Override
+	public List<Artiste> getArtistesByIdUser(int idUser) {
+		//Query q= em.createQuery("SELECT DISTINCT nom FROM Artiste a, Chanson c WHERE a.id=c.artisteId AND c.utilisateurId=:idUser");
+		Query q= em.createQuery("FROM Artiste a, Chanson c WHERE a.id=c.artisteId AND c.utilisateurId=:idUser");
+		q.setParameter("idUser", idUser);
+		
+		List <Artiste> liste = q.getResultList();
+		Set<Artiste> set = new HashSet<Artiste>();
+		set.addAll(liste);
+		liste.clear();
+		liste.addAll(set);
+		
+		return liste;
+	}
 }

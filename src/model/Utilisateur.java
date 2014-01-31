@@ -84,5 +84,4 @@ public class Utilisateur implements Serializable {
 
 		return chanson;
 	}
-
 }

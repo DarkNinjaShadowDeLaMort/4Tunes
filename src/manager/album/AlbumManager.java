@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import model.Album;
+import model.Artiste;
 
 @Local
 public interface AlbumManager {
@@ -12,4 +13,6 @@ public interface AlbumManager {
 	public List <Album> getAlbums();
 	public Album getAlbumByName(String nom);
 	public Album getAlbumById(int id);
+	public List<Album> getAlbumsByIdUser(int idUser);
+	public List<Album> getAlbumsByArtisteAndUser(int idArtiste, int idUser);
 }

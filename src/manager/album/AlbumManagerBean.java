@@ -1,6 +1,10 @@
 package manager.album;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -72,6 +76,40 @@ public class AlbumManagerBean implements AlbumManager {
 	 	else{
 	 		return liste.get(0);
 	 	}
+	}
+
+
+
+	@Override
+	public List<Album> getAlbumsByIdUser(int idUser) {
+		//Query q= em.createQuery("SELECT DISTINCT nom FROM Album a, Chanson c WHERE a.id=c.albumId AND c.utilisateurId=:idUser");
+		Query q= em.createQuery("FROM Album a, Chanson c WHERE a.id=c.albumId AND c.utilisateurId=:idUser");
+		q.setParameter("idUser", idUser);
+		
+		List<Album> liste = q.getResultList();
+		Set<Album> set = new HashSet<Album>();
+		set.addAll(liste);
+		liste.clear();
+		liste.addAll(set);
+		
+		return liste;
+	}
+
+
+
+	@Override
+	public List<Album> getAlbumsByArtisteAndUser(int idArtiste, int idUser) {
+		Query q= em.createQuery("FROM Album al, Artiste ar, Chanson c WHERE al.id=c.albumId AND al.artisteId=:idArtiste AND c.utilisateurId=:idUser");
+		q.setParameter("idArtiste", idArtiste);
+		q.setParameter("idUser", idUser);
+		
+		List<Album> liste = q.getResultList();
+		Set<Album> set = new HashSet<Album>();
+		set.addAll(liste);
+		liste.clear();
+		liste.addAll(set);
+		
+		return liste;
 	}
 
 }

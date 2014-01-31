@@ -22,24 +22,30 @@ public class Chanson implements Serializable {
 	private String titre;
 
 	private String url;
-	
-	private int utilisateurId;
 
+	@Column(name="utilisateurId")
+	private int utilisateurId;
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
 	@JoinColumn(name="utilisateurId", insertable=false, updatable=false)
 	private Utilisateur utilisateur;
-
+	
+	@Column(name="artisteId", insertable=false, updatable=false)
+	private int artisteId;
 	//bi-directional many-to-one association to Artiste
 	@ManyToOne
 	@JoinColumn(name="artisteId")
 	private Artiste artiste;
 
+	@Column(name="albumId", insertable=false, updatable=false)
+	private int albumId;
 	//bi-directional many-to-one association to Album
 	@ManyToOne
 	@JoinColumn(name="albumId")
 	private Album album;
 
+	@Column(name="idGenre", insertable=false, updatable=false)
+	private int idGenre;
 	//bi-directional many-to-one association to Genre
 	@ManyToOne
 	@JoinColumn(name="idGenre")

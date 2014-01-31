@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class Album implements Serializable {
 	@Lob
 	private byte[] pochette;
 
+	@Column(name="artisteId", insertable=false, updatable=false)
+	private int artisteId;
 	//bi-directional many-to-one association to Artiste
 	@ManyToOne
 	@JoinColumn(name="artisteId")

@@ -2,7 +2,12 @@
 <jsp:include page="tpl-top.jsp"></jsp:include>
 
 <%
-	List <Chanson> listeChanson = (List <Chanson>) request.getAttribute("listeChanson");
+	List<Chanson> listeChanson = (List <Chanson>) request.getAttribute("listeChanson");
+	List<Artiste> listeArtiste = (List <Artiste>) request.getAttribute("listeArtiste");
+	List<Album> listeAlbum = (List <Album>) request.getAttribute("listeAlbum");
+
+	int idArtSel = ((Integer) request.getAttribute("selectedArtiste")).intValue();
+	int idAlbSel = ((Integer) request.getAttribute("selectedAlbum")).intValue();
 %>
 
 <%!
@@ -34,13 +39,31 @@ public String getDuration(Chanson c){
 }
 %>
 
-<h1>Connecté</h1>
+
 <div class="btn-group">
 	<a class="btn btn-danger" href="<%=request.getContextPath()%>/servlet/logout"><span class="glyphicon glyphicon-off"></span> Logout</a>       
 	<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addArtiste"><span class="glyphicon glyphicon-plus"></span> Add new Singer</a>  
 	<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addAlbum"><span class="glyphicon glyphicon-plus"></span> Add new Album</a>  
 	<a class="btn btn-primary" href="<%=request.getContextPath()%>/servlet/addChanson"><span class="glyphicon glyphicon-plus"></span> Add new Song</a>  
 </div>
+
+<div>
+	<form method="post" action="<%=request.getContextPath()%>/servlet/userAccount">
+		<select name="artiste" class="form-control" onchange="this.form.submit()">
+			<option value="-1">Tous les Artistes</option>
+		<% for(Artiste artiste : listeArtiste) { %>
+			<option value="<%=artiste.getId() %>" <%if(artiste.getId()==idArtSel) {%>selected="selected"<%}%>><%=artiste.getNom() %></option>
+		<% } %>
+		</select>
+		<select name="album" class="form-control" onchange="this.form.submit()">
+		  <option value="-1">Tous les Album</option>
+		<% for(Album album : listeAlbum) { %>
+			<option value="<%=album.getId() %>" <%if(album.getId()==idAlbSel) {%>selected="selected"<%}%>><%=album.getNom() %></option>
+		<% } %>
+		</select>
+	</form>
+</div>
+
 <table class="table table-striped">
 	<thead>
 		<th>Artist</th>

@@ -18,9 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import manager.album.AlbumManager;
+import manager.artiste.ArtisteManager;
 import manager.chanson.ChansonManager;
+import manager.genre.GenreManager;
 import manager.utilisateur.UtilisateurManager;
+import model.Album;
+import model.Artiste;
 import model.Chanson;
+import model.Genre;
 import model.Utilisateur;
 
 /**
@@ -35,6 +41,15 @@ public class UserAccountServlet extends HttpServlet {
 	
 	@EJB
 	private ChansonManager chansonManager;
+	
+	@EJB
+	private AlbumManager albumManager;
+	
+	@EJB
+	private ArtisteManager artisteManager;
+	
+	@EJB
+	private GenreManager genreManager;
     
     public UserAccountServlet() {
         super();
@@ -44,19 +59,22 @@ public class UserAccountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session = request.getSession(false);
-		if(session == null){
+		if(session == null) {
 			response.sendRedirect(request.getContextPath()+"/index.jsp");
-		}
-		else{
-			int id = (int) session.getAttribute("id");
+		} else {
+			int idUser = (int) session.getAttribute("id");
 			
-			Utilisateur utilisateur = utilisateurManager.getUtilisateur(id);
+			List <Chanson> listeChanson = chansonManager.getChansons(idUser);
+					
+			if(listeChanson != null) {
+				request.setAttribute("listeChanson", listeChanson);
+			}
+
+			request.setAttribute("listeArtiste", artisteManager.getArtistesByIdUser(idUser));
+			request.setAttribute("listeAlbum", albumManager.getAlbumsByIdUser(idUser));
 			
-			List <Chanson> listeChanson = chansonManager.getChansons(id);
-			//List <Chanson> listeChanson = utilisateur.getChansons();
-						
-			request.setAttribute("listeChanson", listeChanson);
-			
+			request.setAttribute("selectedArtiste", new Integer(-1));
+			request.setAttribute("selectedAlbum", new Integer(-1));
 			
 			request.getRequestDispatcher("/user-account.jsp").forward(request, response);
 		}
@@ -64,6 +82,48 @@ public class UserAccountServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession(false);
+		if(session == null) {
+			response.sendRedirect(request.getContextPath()+"/index.jsp");
+		} else {
+			int idUser = (int) session.getAttribute("id");
+			
+			List<Chanson> listeChanson = null;
+			List<Artiste> listArtiste = null;
+			List<Album> listAlbum = null;
+			
+			listArtiste = artisteManager.getArtistesByIdUser(idUser);
+			
+			if(request.getParameter("artiste") != null && request.getParameter("album") != null) {
+				int idArtiste = Integer.parseInt(request.getParameter("artiste"));
+				int idAlbum = Integer.parseInt(request.getParameter("album"));
+				
+				if(idArtiste != -1) {
+					listAlbum = albumManager.getAlbumsByArtisteAndUser(idArtiste, idUser);
+					listeChanson = chansonManager.getChansonsByArtiste(idUser, idArtiste);
+				} else {
+					listAlbum = albumManager.getAlbumsByIdUser(idUser);
+					listeChanson = chansonManager.getChansons(idUser);
+				}
+				
+				if(idAlbum != -1) {
+					listeChanson = chansonManager.getChansonsByAlbum(idUser, idAlbum);
+				}
+				
+				request.setAttribute("selectedArtiste", idArtiste);
+				request.setAttribute("selectedAlbum", idAlbum);
+
+				request.setAttribute("listeChanson", listeChanson);
+				request.setAttribute("listeArtiste", listArtiste);
+			} else {
+
+				listeChanson = chansonManager.getChansons(idUser);
+			}
+			
+			request.setAttribute("listeAlbum", listAlbum);
+			
+			request.getRequestDispatcher("/user-account.jsp").forward(request, response);
+		}
 	}
 
 }

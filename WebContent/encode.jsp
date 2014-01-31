@@ -11,22 +11,22 @@
   <h2 class="form-signin-heading">Convert song</h2>
   <input type="hidden" name="id" value="<%=id %>"/>
   <select name="bitrate" class="form-control">
-		<option>64 kbit/s</option>
-		<option>96 kbit/s</option>
-		<option>128 kbit/s</option>
-		<option>160 kbit/s</option>
-		<option selected="selected">192 kbit/s</option>
-		<option>224 kbit/s</option>
-		<option>256 kbit/s</option>
-		<option>288 kbit/s</option>
-		<option>320 kbit/s</option>
+		<option value="64">64 kbit/s</option>
+		<option value="96">96 kbit/s</option>
+		<option value="128">128 kbit/s</option>
+		<option value="160">160 kbit/s</option>
+		<option selected="selected" value="192">192 kbit/s</option>
+		<option value="224">224 kbit/s</option>
+		<option value="256">256 kbit/s</option>
+		<option value="288">288 kbit/s</option>
+		<option value="320">320 kbit/s</option>
 	</select>
 	<select name="samplingRate" class="form-control">
 	 	<option>44 100 Hz</option>
 	 </select>
 	 <select name="channel" class="form-control">
-	 	<option>1 (Mono)</option>
-	 	<option selected="selected">2 (Stéréo)</option>
+	 	<option value="1">1 (Mono)</option>
+	 	<option selected="selected" value="2">2 (StÃ©rÃ©o)</option>
 	 </select>
 	 <select name="format" class="form-control">
 	 	<option>ac3</option>

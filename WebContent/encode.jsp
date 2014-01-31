@@ -26,7 +26,7 @@
 	 </select>
 	 <select name="channel" class="form-control">
 	 	<option value="1">1 (Mono)</option>
-	 	<option selected="selected" value="2">2 (StÃ©rÃ©o)</option>
+	 	<option selected="selected" value="2">2 (Stéréo)</option>
 	 </select>
 	 <select name="format" class="form-control">
 	 	<option>ac3</option>

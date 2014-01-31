@@ -16,6 +16,11 @@
 		}
 	}
 %>
+
+<div class="jumbotron">
+	<a href="<%=request.getContextPath()%>/servlet/userAccount">Revenir au panneau principal</a>
+</div>
+
 <form class="form-signin" role="form" method="post" action="<%=request.getContextPath()%>/servlet/addChanson" enctype="multipart/form-data">
   <h2 class="form-signin-heading">Add Song</h2>
   <input type="text" name="titre" class="form-control" placeholder="Title" required autofocus>

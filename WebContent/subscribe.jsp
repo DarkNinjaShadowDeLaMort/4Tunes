@@ -3,28 +3,33 @@
 <%
 	String erreur = request.getParameter("erreur");
 
-
+	String msg = "";
 	if(erreur != null){
 		if(erreur.equals("identification")){
-			out.write("Erreur de nom d'utilisateur ou de mot de passe");
+			msg = "Erreur de nom d'utilisateur ou de mot de passe";
 		}
 		else if(erreur.equals("username")){
-			out.write("Vous n'avez pas donné de nom d'utilisateur");
+			msg = "Vous n'avez pas donné de nom d'utilisateur";
 		}
 		else if(erreur.equals("password")){
-			out.write("Vous n'avez pas donné de mot de passe");
+			msg = "Vous n'avez pas donné de mot de passe";
 		}
 		else if(erreur.equals("eMail")){
-			out.write("Vous n'avez pas donné d'adresse eMail");
+			msg = "Vous n'avez pas donné d'adresse eMail";
 		}
 		else if(erreur.equals("usernameExist")){
-			out.write("Le nom d'utilisateur est déjà utilisé");
+			msg = "Le nom d'utilisateur est déjà utilisé";
 		}
 
 	}
+	
+	if(!msg.isEmpty()) {
 %>
+<div class="alert alert-danger"><%=msg %></div>
+<% } %>
 
-<form class="form-signin" role="form" method="post" action="servlet/suscribe">
+
+<form class="form-signin" role="form" method="post" action="servlet/subscribe">
   <h2 class="form-signin-heading">Please sign on</h2>
   <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
   <input type="password" name="password" class="form-control" placeholder="Password" required>

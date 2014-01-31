@@ -4,7 +4,9 @@
 	String subscribe = request.getParameter("subscribe");
 	if(subscribe != null){
 		if(subscribe.equals("ok")){
-			out.write("Inscription ok");
+%>
+			<div class="alert alert-success"><%="Inscription ok" %></div>
+<%
 		}
 	}
 	
@@ -15,7 +17,7 @@
 		  <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
 		  <input type="password" name="password" class="form-control" placeholder="Password" required>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-		  <a href="<%=request.getContextPath()%>/subscribe.jsp">Subscribe</a>
+		  <button class="btn btn-lg btn-primary btn-block" type="button" onclick="window.location.href='<%=request.getContextPath()%>/subscribe.jsp'">Subscribe</button>
 	</form>
 
 

@@ -18,6 +18,10 @@
 	}
 %>
 
+<div class="jumbotron">
+	<a href="<%=request.getContextPath()%>/servlet/userAccount">Revenir au panneau principal</a>
+</div>
+
 <form class="form-signin" role="form" method="post" action="addAlbum" enctype="multipart/form-data">
   <h2 class="form-signin-heading">Add Album</h2>
   <input type="text" name="nom" class="form-control" placeholder="Name" required autofocus>

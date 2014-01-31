@@ -2,7 +2,10 @@
 <%
 	int id = (Integer) request.getAttribute("id");
 %>
-l'id en attribut est : <%=id %>
+
+<div class="jumbotron">
+	<a href="<%=request.getContextPath()%>/servlet/userAccount">Revenir au panneau principal</a>
+</div>
 
 <form class="form-signin" role="form" method="post" action="<%=request.getContextPath()%>/servlet/encode" enctype="multipart/form-data">
   <h2 class="form-signin-heading">Convert song</h2>
